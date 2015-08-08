@@ -22,6 +22,8 @@ extern crate plugin;
 extern crate walker;
 #[cfg(feature = "watch")]
 extern crate notify;
+#[macro_use]
+extern crate log;
 
 
 pub use self::middleware::Template;

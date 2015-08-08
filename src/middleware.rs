@@ -66,11 +66,11 @@ fn read_file(path: &Path) -> Option<String> {
         if file.read_to_string(&mut buf).is_ok() {
             Some(buf)
         } else {
-            println!("Failed to read file {}, skipped", path.display());
+            error!("Failed to read file {}, skipped", path.display());
             None
         }
     } else {
-        println!("Failed to open file {}, skipped.", path.display());
+        error!("Failed to open file {}, skipped.", path.display());
         None
     }
 }
@@ -99,7 +99,7 @@ impl HandlebarsEngine {
                 if !is_temp_file(tpl_name) {
                     if let Some(tpl) = read_file(&path) {
                         if let Err(e) = hbs.register_template_string(tpl_name, tpl){
-                            println!("Failed to parse template {}, {}", tpl_name, e);
+                            error!("Failed to parse template {}, {}", tpl_name, e);
                         }
                     }
                 }
